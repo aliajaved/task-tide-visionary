@@ -1,11 +1,17 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import TaskList from "@/components/TaskList";
+import CalendarView from "@/components/CalendarView";
+import ViewToggle from "@/components/ViewToggle";
 
 const Index = () => {
+  const [view, setView] = useState<"list" | "calendar">("list");
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="container max-w-4xl">
+        <h1 className="text-4xl font-bold mb-8 text-primary">Task Manager</h1>
+        <ViewToggle view={view} onViewChange={setView} />
+        {view === "list" ? <TaskList /> : <CalendarView />}
       </div>
     </div>
   );
